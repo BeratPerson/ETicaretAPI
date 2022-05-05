@@ -43,7 +43,7 @@ namespace ETicaretAPI.Controllers
                 stock = model.Stock,
             });
             await _productWriteRepository.SaveAsync();
-            return Ok("Başarıyla Eklendi");
+            return Ok(_productReadRepository.GetAll());
         }
         [HttpPut]
         public async Task<IActionResult> Update(VM_Update_Product model)
@@ -55,7 +55,7 @@ namespace ETicaretAPI.Controllers
             await _productWriteRepository.SaveAsync();
             product.UpdatedDate = DateTime.UtcNow;
 
-            return Ok();
+            return Ok(_productReadRepository.GetAll());
         }
 
 
